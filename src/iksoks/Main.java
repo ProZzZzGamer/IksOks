@@ -1,8 +1,9 @@
+package iksoks;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner unos = new Scanner(System.in);
         String mreza = unos.next();
         int index = 0;
@@ -18,14 +19,10 @@ public class Main {
             index++;
         }
 
-        String dzajinaMreza = mreza.substring(0,3);
-        String hazimovaMreza = mreza.substring(3, 6);
-        String mamarinaMreza = mreza.substring(6, 9);
-
-        System.out.println("-------");
-        System.out.println("| " + dzajinaMreza + " |");
-        System.out.println("| " + hazimovaMreza + " |");
-        System.out.println("| " + mamarinaMreza + " |");
-        System.out.println("-------");
+        System.out.println("---------");
+        System.out.println("| " + mreza.charAt(0) + " " + mreza.charAt(1) + " " + mreza.charAt(2) + " |");
+        System.out.println("| " + mreza.charAt(3) + " " + mreza.charAt(4) + " " + mreza.charAt(5) + " |");
+        System.out.println("| " + mreza.charAt(6) + " " + mreza.charAt(7) + " " + mreza.charAt(8) + " |");
+        System.out.println("---------");
     }
 }
