@@ -6,31 +6,9 @@ public class Main {
         char[][] nizPolje = new char[3][3];
         String unosPolje = unos.nextLine();
 
-        int brojacDijagonalaX = 0;
-        int brojacObrnutaDijagonalaX = 0;
-
-        int brojacVertikalnoX1 = 0;
-        int brojacVertikalnoX2 = 0;
-        int brojacVertikalnoX3 = 0;
-
-        int brojacHorizontalnoX1 = 0;
-        int brojacHorizontalnoX2 = 0;
-        int brojacHorizontalnoX3 = 0;
-
-        int bodoviX = 0;
-
-        int brojacDijagonalaO = 0;
-        int brojacObrnutaDijagonalaO = 0;
-
-        int brojacVertikalnoO1 = 0;
-        int brojacVertikalnoO2 = 0;
-        int brojacVertikalnoO3 = 0;
-
-        int brojacHorizontalnoO1 = 0;
-        int brojacHorizontalnoO2 = 0;
-        int brojacHorizontalnoO3 = 0;
-
-        int bodoviO = 0;
+        int[] brojBodovaZaX = new int[8];
+        int[] brojBodovaZaO = new int[8];
+        int[] rezultatPartije = new int[2];
 
         while (unosPolje.length() != 9) {
             System.out.println("Unesi ponovo!");
@@ -64,135 +42,135 @@ public class Main {
             for (int e = 0; e < nizPolje.length; ++e) {
                 // dijagonala
                 if (d == e && nizPolje[d][e] == 'X') {
-                    brojacDijagonalaX++;
-                    if (brojacDijagonalaX == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[0]++;
+                    if (brojBodovaZaX[0] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 // obrnuto dijagonala
                 if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'X') {
-                    brojacObrnutaDijagonalaX++;
-                    if (brojacObrnutaDijagonalaX == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[1]++;
+                    if (brojBodovaZaX[1] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 // vertikalno
                 if (e == 0 && nizPolje[d][e] == 'X') {
-                    brojacVertikalnoX1++;
-                    if (brojacVertikalnoX1 == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[2]++;
+                    if (brojBodovaZaX[2] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 if (e == 1 && nizPolje[d][e] == 'X') {
-                    brojacVertikalnoX2++;
-                    if (brojacVertikalnoX2 == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[3]++;
+                    if (brojBodovaZaX[3] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 if (e == 2 && nizPolje[d][e] == 'X') {
-                    brojacVertikalnoX3++;
-                    if (brojacVertikalnoX3 == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[4]++;
+                    if (brojBodovaZaX[4] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 // horizontalno
                 if (d == 0 && nizPolje[d][e] == 'X') {
-                    brojacHorizontalnoX1++;
-                    if (brojacHorizontalnoX1 == 3) {
-                        bodoviX++;
+                   brojBodovaZaX[5]++;
+                    if (brojBodovaZaX[5] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 if (d == 1 && nizPolje[d][e] == 'X') {
-                    brojacHorizontalnoX2++;
-                    if (brojacHorizontalnoX2 == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[6]++;
+                    if (brojBodovaZaX[6] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 if (d == 2 && nizPolje[d][e] == 'X') {
-                    brojacHorizontalnoX3++;
-                    if (brojacHorizontalnoX3 == 3) {
-                        bodoviX++;
+                    brojBodovaZaX[7]++;
+                    if (brojBodovaZaX[7] == 3) {
+                        rezultatPartije[0]++;
                     }
                 }
 
                 // dijagonala
                 if (d == e && nizPolje[d][e] == 'O') {
-                    brojacDijagonalaO++;
-                    if (brojacDijagonalaO == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[0]++;
+                    if (brojBodovaZaO[0] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 // obrnuta dijagonala
                 if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'O') {
-                    brojacObrnutaDijagonalaO++;
-                    if (brojacObrnutaDijagonalaO == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[1]++;
+                    if (brojBodovaZaO[1] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 // vertikalno
                 if (e == 0 && nizPolje[d][e] == 'O') {
-                    brojacVertikalnoO1++;
-                    if (brojacVertikalnoO1 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[2]++;
+                    if (brojBodovaZaO[2] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 if (e == 1 && nizPolje[d][e] == 'O') {
-                    brojacVertikalnoO2++;
-                    if (brojacVertikalnoO2 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[3]++;
+                    if (brojBodovaZaO[3] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 if (e == 2 && nizPolje[d][e] == 'O') {
-                    brojacVertikalnoO3++;
-                    if (brojacVertikalnoO3 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[4]++;
+                    if (brojBodovaZaO[4] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 // horizontalno
                 if (d == 0 && nizPolje[d][e] == 'O') {
-                    brojacHorizontalnoO1++;
-                    if (brojacHorizontalnoO1 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[5]++;
+                    if (brojBodovaZaO[5] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 if (d == 1 && nizPolje[d][e] == 'O') {
-                    brojacHorizontalnoO2++;
-                    if (brojacHorizontalnoO2 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[6]++;
+                    if (brojBodovaZaO[6] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
 
                 if (d == 2 && nizPolje[d][e] == 'O') {
-                    brojacHorizontalnoO3++;
-                    if (brojacHorizontalnoO3 == 3) {
-                        bodoviO++;
+                    brojBodovaZaO[7]++;
+                    if (brojBodovaZaO[7] == 3) {
+                        rezultatPartije[1]++;
                     }
                 }
             }
         }
 
-        if (bodoviX > 1 || bodoviO > 1) {
+        if (rezultatPartije[0] > 1 || rezultatPartije[1] > 1) {
             System.out.println("Igra nije dobro postavljena.");
-        } else if (bodoviX == 1 && bodoviO == 1) {
+        } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 1) {
             System.out.println("Igra nije dobro postavljena");
-        } else if (bodoviX == 1 && bodoviO == 0) {
+        } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
             System.out.println("X je dobio");
-        } else if (bodoviO == 1 && bodoviX == 0) {
+        } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
             System.out.println("O je dobio");
-        } else if (bodoviX == 0 && bodoviO == 0) {
+        } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0) {
             System.out.println("Nema pobjednika");
         }
     }
