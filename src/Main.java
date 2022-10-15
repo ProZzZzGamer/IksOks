@@ -1,52 +1,55 @@
 import java.util.Scanner;
 
 public class Main {
-    public Main() {
-    }
-
     public static void main(String[] args) {
         Scanner unos = new Scanner(System.in);
         char[][] nizPolje = new char[3][3];
         String unosPolje = unos.nextLine();
-        int z = 0;
-        int x = 0;
-        int y = 0;
-        int l = 0;
-        int m = 0;
-        int k = 0;
-        int a = 0;
-        int s = 0;
-        int r = 0;
-        int z1 = 0;
-        int x1 = 0;
-        int y1 = 0;
-        int l1 = 0;
-        int m1 = 0;
-        int k1 = 0;
-        int a1 = 0;
-        int s1 = 0;
-        int r1 = 0;
 
-        int c;
-        for (c = 0; unosPolje.length() != 9; unosPolje = unos.nextLine()) {
+        int brojacDijagonalaX = 0;
+        int brojacObrnutaDijagonalaX = 0;
+
+        int brojacVertikalnoX1 = 0;
+        int brojacVertikalnoX2 = 0;
+        int brojacVertikalnoX3 = 0;
+
+        int brojacHorizontalnoX1 = 0;
+        int brojacHorizontalnoX2 = 0;
+        int brojacHorizontalnoX3 = 0;
+
+        int bodoviX = 0;
+
+        int brojacDijagonalaO = 0;
+        int brojacObrnutaDijagonalaO = 0;
+
+        int brojacVertikalnoO1 = 0;
+        int brojacVertikalnoO2 = 0;
+        int brojacVertikalnoO3 = 0;
+
+        int brojacHorizontalnoO1 = 0;
+        int brojacHorizontalnoO2 = 0;
+        int brojacHorizontalnoO3 = 0;
+
+        int bodoviO = 0;
+
+        while (unosPolje.length() != 9) {
             System.out.println("Unesi ponovo!");
+            unosPolje = unos.nextLine();
         }
 
-        int d;
-        int e;
-        for (d = 0; d < 9; ++d) {
-            e = unosPolje.charAt(d);
-            if (e != 'X' && e != 'O' && e != '_') {
+        for (int d = 0; d < 9; ++d) {
+            char karakter = unosPolje.charAt(d);
+            if (karakter != 'X' && karakter != 'O' && karakter != '_') {
                 System.out.println("Igra nije validna (nisu unešeni validni karakteri 'X' 'O' '_')!");
                 unosPolje = unos.nextLine();
-                d = 0;
             }
         }
 
-        for (d = 0; d < nizPolje.length; d++) {
-            for (e = 0; e < nizPolje.length; e++) {
-                nizPolje[d][e] = unosPolje.charAt(c);
-                c++;
+        int index = 0;
+        for (int d = 0; d < nizPolje.length; d++) {
+            for (int e = 0; e < nizPolje.length; e++) {
+                nizPolje[d][e] = unosPolje.charAt(index);
+                index++;
             }
         }
 
@@ -57,133 +60,139 @@ public class Main {
             System.out.print("\n");
         }
 
-        for (d = 0; d < nizPolje.length; ++d) {
-            for (e = 0; e < nizPolje.length; ++e) {
+        for (int d = 0; d < nizPolje.length; ++d) {
+            for (int e = 0; e < nizPolje.length; ++e) {
+                // dijagonala
                 if (d == e && nizPolje[d][e] == 'X') {
-                    x++;
-                    if (x == 3) {
-                        y++;
+                    brojacDijagonalaX++;
+                    if (brojacDijagonalaX == 3) {
+                        bodoviX++;
                     }
                 }
 
+                // obrnuto dijagonala
                 if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'X') {
-                    z++;
-                    if (z == 3) {
-                        y++;
+                    brojacObrnutaDijagonalaX++;
+                    if (brojacObrnutaDijagonalaX == 3) {
+                        bodoviX++;
                     }
                 }
 
+                // vertikalno
                 if (e == 0 && nizPolje[d][e] == 'X') {
-                    l++;
-                    if (l == 3) {
-                        y++;
+                    brojacVertikalnoX1++;
+                    if (brojacVertikalnoX1 == 3) {
+                        bodoviX++;
                     }
                 }
 
                 if (e == 1 && nizPolje[d][e] == 'X') {
-                    m++;
-                    if (m == 3) {
-                        y++;
+                    brojacVertikalnoX2++;
+                    if (brojacVertikalnoX2 == 3) {
+                        bodoviX++;
                     }
                 }
 
                 if (e == 2 && nizPolje[d][e] == 'X') {
-                    k++;
-                    if (k == 3) {
-                        y++;
+                    brojacVertikalnoX3++;
+                    if (brojacVertikalnoX3 == 3) {
+                        bodoviX++;
                     }
                 }
 
+                // horizontalno
                 if (d == 0 && nizPolje[d][e] == 'X') {
-                    a++;
-                    if (a == 3) {
-                        y++;
+                    brojacHorizontalnoX1++;
+                    if (brojacHorizontalnoX1 == 3) {
+                        bodoviX++;
                     }
                 }
 
                 if (d == 1 && nizPolje[d][e] == 'X') {
-                    s++;
-                    if (s == 3) {
-                        y++;
+                    brojacHorizontalnoX2++;
+                    if (brojacHorizontalnoX2 == 3) {
+                        bodoviX++;
                     }
                 }
+
                 if (d == 2 && nizPolje[d][e] == 'X') {
-                    r++;
-                    if (r == 3) {
-                        y++;
+                    brojacHorizontalnoX3++;
+                    if (brojacHorizontalnoX3 == 3) {
+                        bodoviX++;
                     }
                 }
 
+                // dijagonala
                 if (d == e && nizPolje[d][e] == 'O') {
-                    x1++;
-                    if (x1 == 3) {
-                        y1++;
+                    brojacDijagonalaO++;
+                    if (brojacDijagonalaO == 3) {
+                        bodoviO++;
                     }
                 }
 
+                // obrnuta dijagonala
                 if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'O') {
-                    z1++;
-                    if (z1 == 3) {
-                        y1++;
+                    brojacObrnutaDijagonalaO++;
+                    if (brojacObrnutaDijagonalaO == 3) {
+                        bodoviO++;
                     }
                 }
 
+                // vertikalno
                 if (e == 0 && nizPolje[d][e] == 'O') {
-                    l1++;
-                    if (l1 == 3) {
-                        y1++;
+                    brojacVertikalnoO1++;
+                    if (brojacVertikalnoO1 == 3) {
+                        bodoviO++;
                     }
                 }
 
                 if (e == 1 && nizPolje[d][e] == 'O') {
-                    m1++;
-                    if (m1 == 3) {
-                        y1++;
+                    brojacVertikalnoO2++;
+                    if (brojacVertikalnoO2 == 3) {
+                        bodoviO++;
                     }
                 }
 
                 if (e == 2 && nizPolje[d][e] == 'O') {
-                    k1++;
-                    if (k1 == 3) {
-                        y1++;
+                    brojacVertikalnoO3++;
+                    if (brojacVertikalnoO3 == 3) {
+                        bodoviO++;
                     }
                 }
 
+                // horizontalno
                 if (d == 0 && nizPolje[d][e] == 'O') {
-                    a1++;
-                    if (a1 == 3) {
-                        y1++;
+                    brojacHorizontalnoO1++;
+                    if (brojacHorizontalnoO1 == 3) {
+                        bodoviO++;
                     }
                 }
 
                 if (d == 1 && nizPolje[d][e] == 'O') {
-                    s1++;
-                    if (s1 == 3) {
-                        y1++;
+                    brojacHorizontalnoO2++;
+                    if (brojacHorizontalnoO2 == 3) {
+                        bodoviO++;
                     }
                 }
+
                 if (d == 2 && nizPolje[d][e] == 'O') {
-                    r1++;
-                    if (r1 == 3) {
-                        y1++;
+                    brojacHorizontalnoO3++;
+                    if (brojacHorizontalnoO3 == 3) {
+                        bodoviO++;
                     }
                 }
             }
         }
 
-        if (y > 1 || y1 > 1) {
+        if (bodoviX > 1 || bodoviO > 1) {
             System.out.println("Igra nije dobro postavljena.");
-        }
-        if (y == 1 && y1 == 1) {
+        } else if (bodoviX == 1 && bodoviO == 1) {
             System.out.println("Igra nije dobro postavljena");
-        }
-        if (y == 1 && y1 == 0) {
+        } else if (bodoviX == 1 && bodoviO == 0) {
             System.out.println("X je dobio");
-        }
-        if (y1 == 1 && y == 0) {
+        } else if (bodoviO == 1 && bodoviX == 0) {
             System.out.println("O je dobio");
-        }
-        if (y == 0 && y1 == 0) {
+        } else if (bodoviX == 0 && bodoviO == 0) {
             System.out.println("Nema pobjednika");
         }
     }
