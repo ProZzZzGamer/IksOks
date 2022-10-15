@@ -17,7 +17,15 @@ public class Main {
         int a = 0;
         int s = 0;
         int r = 0;
-
+        int z1 = 0;
+        int x1 = 0;
+        int y1 = 0;
+        int l1 = 0;
+        int m1 = 0;
+        int k1 = 0;
+        int a1 = 0;
+        int s1 = 0;
+        int r1 = 0;
 
         int c;
         for (c = 0; unosPolje.length() != 9; unosPolje = unos.nextLine()) {
@@ -105,16 +113,75 @@ public class Main {
                         y++;
                     }
                 }
+
+                if (d == e && nizPolje[d][e] == 'O') {
+                    x1++;
+                    if (x1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'O') {
+                    z1++;
+                    if (z1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (e == 0 && nizPolje[d][e] == 'O') {
+                    l1++;
+                    if (l1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (e == 1 && nizPolje[d][e] == 'O') {
+                    m1++;
+                    if (m1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (e == 2 && nizPolje[d][e] == 'O') {
+                    k1++;
+                    if (k1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (d == 0 && nizPolje[d][e] == 'O') {
+                    a1++;
+                    if (a1 == 3) {
+                        y1++;
+                    }
+                }
+
+                if (d == 1 && nizPolje[d][e] == 'O') {
+                    s1++;
+                    if (s1 == 3) {
+                        y1++;
+                    }
+                }
+                if (d == 2 && nizPolje[d][e] == 'O') {
+                    r1++;
+                    if (r1 == 3) {
+                        y1++;
+                    }
+                }
             }
         }
 
-        if (y > 1) {
+        if (y > 1 || y1 > 1) {
             System.out.println("Igra nije dobro postavljena.");
-        } else if (y == 1) {
-            System.out.println("X je dobio.");
-        } else if (y == 0) {
-            System.out.println("Nema pobjednika.");
         }
-
+        if (y == 1 && y1 == 1) {
+            System.out.println("Igra nije dobro postavljena");
+        }
+        if (y == 1 && y1 == 0) {
+            System.out.println("X je dobio");
+        }
+        if (y1 == 1 && y == 0) {
+            System.out.println("O je dobio");
+        }
     }
 }
