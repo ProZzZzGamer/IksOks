@@ -183,5 +183,8 @@ public class Main {
         if (y1 == 1 && y == 0) {
             System.out.println("O je dobio");
         }
+        if (y == 0 && y1 == 0) {
+            System.out.println("Nema pobjednika");
+        }
     }
 }
