@@ -9,6 +9,7 @@ public class Main {
         int[] brojBodovaZaX = new int[8];
         int[] brojBodovaZaO = new int[8];
         int[] rezultatPartije = new int[3];
+        int[] brojacXIO = new int[2];
 
         for (int d = 0; d < 9; ++d) {
             char karakter = unosPolje.charAt(d);
@@ -158,6 +159,12 @@ public class Main {
                 if (nizPolje[d][e] == '_') {
                     rezultatPartije[2]++;
                 }
+                if (nizPolje[d][e] == 'X') {
+                    brojacXIO[0]++;
+                }
+                if (nizPolje[d][e] == 'O') {
+                    brojacXIO[1]++;
+                }
             }
         }
 
@@ -170,6 +177,8 @@ public class Main {
             System.out.println("X je dobio");
         } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
             System.out.println("O je dobio");
+        } else if (!(brojacXIO[0] == brojacXIO[1] || brojacXIO[0] + 1 == brojacXIO[1] || brojacXIO[1] + 1 == brojacXIO[0])) {
+            System.out.println("Igra nije moguća");
         } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0 && rezultatPartije[2] > 0) {
             System.out.println("Igra nije završena");
         } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0) {
