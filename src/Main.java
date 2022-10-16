@@ -8,18 +8,14 @@ public class Main {
 
         int[] brojBodovaZaX = new int[8];
         int[] brojBodovaZaO = new int[8];
-        int[] rezultatPartije = new int[2];
-
-        while (unosPolje.length() != 9) {
-            System.out.println("Unesi ponovo!");
-            unosPolje = unos.nextLine();
-        }
+        int[] rezultatPartije = new int[3];
 
         for (int d = 0; d < 9; ++d) {
             char karakter = unosPolje.charAt(d);
-            if (karakter != 'X' && karakter != 'O' && karakter != '_') {
-                System.out.println("Igra nije validna (nisu unešeni validni karakteri 'X' 'O' '_')!");
+            while (karakter != 'X' && karakter != 'O' && karakter != '_' && unosPolje.length() != 9) {
+                System.out.println("Igra nije dobro unešena (nisu unešeni validni karakteri 'X' 'O' '_' ili nije unešen dovoljan broj karaktera za polje, broj karaktera mora biti 9)!");
                 unosPolje = unos.nextLine();
+                d = 0;
             }
         }
 
@@ -38,8 +34,8 @@ public class Main {
             System.out.print("\n");
         }
 
-        for (int d = 0; d < nizPolje.length; ++d) {
-            for (int e = 0; e < nizPolje.length; ++e) {
+        for (int d = 0; d < nizPolje.length; d++) {
+            for (int e = 0; e < nizPolje.length; e++) {
                 // dijagonala
                 if (d == e && nizPolje[d][e] == 'X') {
                     brojBodovaZaX[0]++;
@@ -159,8 +155,12 @@ public class Main {
                         rezultatPartije[1]++;
                     }
                 }
+                if (nizPolje[d][e] == '_') {
+                    rezultatPartije[2]++;
+                }
             }
         }
+
 
         if (rezultatPartije[0] > 1 || rezultatPartije[1] > 1) {
             System.out.println("Igra nije dobro postavljena.");
@@ -170,6 +170,8 @@ public class Main {
             System.out.println("X je dobio");
         } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
             System.out.println("O je dobio");
+        } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0 && rezultatPartije[2] > 0) {
+            System.out.println("Igra nije završena");
         } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0) {
             System.out.println("Nema pobjednika");
         }
