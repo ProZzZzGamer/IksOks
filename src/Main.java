@@ -3,6 +3,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner unos = new Scanner(System.in);
+
+        System.out.println("Ovo je program koji radi na principu tako da uneseš polje za XO, i prepozna: ko je pobjedio, je li igra moguća itd.");
+        System.out.println("Mora se prvo unijeti polje od 9 karaktera i moraju biti karakteri 'X', 'O', '_'.");
+        System.out.println("'X' = iks, 'O' = oks, '_' = prazno polje");
+        System.out.println();
+        System.out.println("Primjeri polja: XOXOXOXXO - X je pobjedio, XOXOOXXXO - nema pobjednika, XO_OOX_X_ - igra nije dovršena, XO_XO_XOX - igra nije dobro postavljena.");
+        System.out.println();
+        System.out.println("Unesi polje:");
+        System.out.println();
+
         char[][] nizPolje = new char[3][3];
         String unosPolje = unos.nextLine();
 
@@ -10,12 +20,6 @@ public class Main {
         int[] brojBodovaZaO = new int[8];
         int[] rezultatPartije = new int[3];
         int[] brojacXIO = new int[2];
-
-        System.out.println("Ovo je program koji radi na principu tako da uneseš polje za XO, i prepozna: ko je pobjedio, je li igra moguća itd.");
-        System.out.println("Mora se prvo unijeti polje od 9 karaktera i moraju biti karakteri 'X', 'O', '_'.");
-        System.out.println("'X' = iks, 'O' = oks, '_' = prazno polje");
-        System.out.println();
-        System.out.println("Unesi polje:");
 
         for (int d = 0; d < 9; ++d) {
             char karakter = unosPolje.charAt(d);
@@ -181,9 +185,9 @@ public class Main {
         } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 1) {
             System.out.println("Igra nije dobro postavljena");
         } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
-            System.out.println("X je pobjedio.");
+            System.out.println("'X' je pobjedio.");
         } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
-            System.out.println("O je pobjedio.");
+            System.out.println("'O' je pobjedio.");
         } else if (!(brojacXIO[0] == brojacXIO[1] || brojacXIO[0] + 1 == brojacXIO[1] || brojacXIO[1] + 1 == brojacXIO[0])) {
             System.out.println("Igra nije moguća");
         } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0 && rezultatPartije[2] > 0) {
