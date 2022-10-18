@@ -11,10 +11,16 @@ public class Main {
         int[] rezultatPartije = new int[3];
         int[] brojacXIO = new int[2];
 
+        System.out.println("Ovo je program koji radi na principu tako da uneseš polje za XO, i prepozna: ko je pobjedio, je li igra moguća itd.");
+        System.out.println("Mora se prvo unijeti polje od 9 karaktera i moraju biti karakteri 'X', 'O', '_'.");
+        System.out.println("'X' = iks, 'O' = oks, '_' = prazno polje");
+        System.out.println();
+        System.out.println("Unesi polje:");
+
         for (int d = 0; d < 9; ++d) {
             char karakter = unosPolje.charAt(d);
             while (karakter != 'X' && karakter != 'O' && karakter != '_' && unosPolje.length() != 9) {
-                System.out.println("Igra nije dobro unešena (nisu unešeni validni karakteri 'X' 'O' '_' ili nije unešen dovoljan broj karaktera za polje, broj karaktera mora biti 9)!");
+                System.out.println("Igra nije dobro unešena (nisu unešeni validni karakteri 'X' 'O' '_' ili nije unešen određen broj karaktera za polje, broj karaktera mora biti 9)!");
                 unosPolje = unos.nextLine();
                 d = 0;
             }
@@ -28,6 +34,7 @@ public class Main {
             }
         }
 
+        System.out.println("XO polje");
         for (char[] i : nizPolje) {
             for (char o : i) {
                 System.out.print(o + " ");
@@ -174,9 +181,9 @@ public class Main {
         } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 1) {
             System.out.println("Igra nije dobro postavljena");
         } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
-            System.out.println("X je dobio");
+            System.out.println("X je pobjedio.");
         } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
-            System.out.println("O je dobio");
+            System.out.println("O je pobjedio.");
         } else if (!(brojacXIO[0] == brojacXIO[1] || brojacXIO[0] + 1 == brojacXIO[1] || brojacXIO[1] + 1 == brojacXIO[0])) {
             System.out.println("Igra nije moguća");
         } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0 && rezultatPartije[2] > 0) {
