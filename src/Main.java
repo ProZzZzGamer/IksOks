@@ -4,37 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner unos = new Scanner(System.in);
 
-        System.out.println("Ovo je program koji radi na principu tako da uneseš polje za XO, i prepozna: ko je pobjedio, je li igra moguća itd.");
-        System.out.println("Mora se prvo unijeti polje od 9 karaktera i moraju biti karakteri 'X', 'O', '_'.");
-        System.out.println("'X' = iks, 'O' = oks, '_' = prazno polje");
-        System.out.println();
-        System.out.println("Primjeri polja: XOXOXOXXO - X je pobjedio, XOXOOXXXO - nema pobjednika, XO_OOX_X_ - igra nije dovršena, XO_XO_XOX - igra nije dobro postavljena.");
-        System.out.println();
-        System.out.println("Unesi polje:");
-        System.out.println();
-
         char[][] nizPolje = new char[3][3];
-        String unosPolje = unos.nextLine();
 
-        int[] brojBodovaZaX = new int[8];
-        int[] brojBodovaZaO = new int[8];
-        int[] rezultatPartije = new int[3];
-        int[] brojacXIO = new int[2];
-
-        for (int d = 0; d < 9; ++d) {
-            char karakter = unosPolje.charAt(d);
-            while (karakter != 'X' && karakter != 'O' && karakter != '_' && unosPolje.length() != 9) {
-                System.out.println("Igra nije dobro unešena (nisu unešeni validni karakteri 'X' 'O' '_' ili nije unešen određen broj karaktera za polje, broj karaktera mora biti 9)!");
-                unosPolje = unos.nextLine();
-                d = 0;
-            }
-        }
-
-        int index = 0;
-        for (int d = 0; d < nizPolje.length; d++) {
-            for (int e = 0; e < nizPolje.length; e++) {
-                nizPolje[d][e] = unosPolje.charAt(index);
-                index++;
+        int brojPraznihPolja = 9;
+        for (int i = 0; i < 3; i++) {
+            for (int o = 0; o < 3; o++) {
+                nizPolje[i][o] = '_';
             }
         }
 
@@ -46,154 +21,186 @@ public class Main {
             System.out.print("\n");
         }
 
-        for (int d = 0; d < nizPolje.length; d++) {
-            for (int e = 0; e < nizPolje.length; e++) {
-                // dijagonala
-                if (d == e && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[0]++;
-                    if (brojBodovaZaX[0] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
+        int[] brojBodovaZaX = new int[8];
+        int[] brojBodovaZaO = new int[8];
+        int[] rezultatPartije = new int[3];
+        int[] brojacXIO = new int[2];
 
-                // obrnuto dijagonala
-                if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[1]++;
-                    if (brojBodovaZaX[1] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
+        while (brojPraznihPolja > 0) {
 
-                // vertikalno
-                if (e == 0 && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[2]++;
-                    if (brojBodovaZaX[2] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
+            System.out.println("Neka prvi igrač unese 'X'.");
+            while (!unos.hasNextInt()) {
+                String input = unos.next();
+                System.out.println("\"" + input + "\" nije validan broj.");
+            }
 
-                if (e == 1 && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[3]++;
-                    if (brojBodovaZaX[3] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
+            int uspravnoX = unos.nextInt();
+            int vodoranvoX = unos.nextInt();
 
-                if (e == 2 && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[4]++;
-                    if (brojBodovaZaX[4] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
+            while (uspravnoX > 3 || vodoranvoX > 3 || nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X' || nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'O') {
+                System.out.println("Potez nije validan, unesi ponovo: ");
+                uspravnoX = unos.nextInt();
+                vodoranvoX = unos.nextInt();
+            }
+            nizPolje[uspravnoX - 1][vodoranvoX - 1] = 'X';
 
-                // horizontalno
-                if (d == 0 && nizPolje[d][e] == 'X') {
-                   brojBodovaZaX[5]++;
-                    if (brojBodovaZaX[5] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
-
-                if (d == 1 && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[6]++;
-                    if (brojBodovaZaX[6] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
-
-                if (d == 2 && nizPolje[d][e] == 'X') {
-                    brojBodovaZaX[7]++;
-                    if (brojBodovaZaX[7] == 3) {
-                        rezultatPartije[0]++;
-                    }
-                }
-
-                // dijagonala
-                if (d == e && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[0]++;
-                    if (brojBodovaZaO[0] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                // obrnuta dijagonala
-                if (nizPolje.length - 1 - d == e && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[1]++;
-                    if (brojBodovaZaO[1] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                // vertikalno
-                if (e == 0 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[2]++;
-                    if (brojBodovaZaO[2] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                if (e == 1 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[3]++;
-                    if (brojBodovaZaO[3] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                if (e == 2 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[4]++;
-                    if (brojBodovaZaO[4] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                // horizontalno
-                if (d == 0 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[5]++;
-                    if (brojBodovaZaO[5] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                if (d == 1 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[6]++;
-                    if (brojBodovaZaO[6] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-
-                if (d == 2 && nizPolje[d][e] == 'O') {
-                    brojBodovaZaO[7]++;
-                    if (brojBodovaZaO[7] == 3) {
-                        rezultatPartije[1]++;
-                    }
-                }
-                if (nizPolje[d][e] == '_') {
-                    rezultatPartije[2]++;
-                }
-                if (nizPolje[d][e] == 'X') {
-                    brojacXIO[0]++;
-                }
-                if (nizPolje[d][e] == 'O') {
-                    brojacXIO[1]++;
+            // dijagonala
+            if (uspravnoX == vodoranvoX && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[0]++;
+                if (brojBodovaZaX[0] == 3) {
+                    rezultatPartije[0]++;
                 }
             }
-        }
+            // obrnuta dijagonala
+            if (nizPolje.length - 1 - (uspravnoX - 1) == vodoranvoX - 1 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[1]++;
+                if (brojBodovaZaX[1] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
+            // vertikalno
+            if (vodoranvoX - 1 == 0 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[2]++;
+                if (brojBodovaZaX[2] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
 
+            if (vodoranvoX - 1 == 1 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[3]++;
+                if (brojBodovaZaX[3] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
 
-        if (rezultatPartije[0] > 1 || rezultatPartije[1] > 1) {
-            System.out.println("Igra nije dobro postavljena.");
-        } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 1) {
-            System.out.println("Igra nije dobro postavljena");
-        } else if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
-            System.out.println("'X' je pobjedio.");
-        } else if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
-            System.out.println("'O' je pobjedio.");
-        } else if (!(brojacXIO[0] == brojacXIO[1] || brojacXIO[0] + 1 == brojacXIO[1] || brojacXIO[1] + 1 == brojacXIO[0])) {
-            System.out.println("Igra nije moguća");
-        } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0 && rezultatPartije[2] > 0) {
-            System.out.println("Igra nije završena");
-        } else if (rezultatPartije[0] == 0 && rezultatPartije[1] == 0) {
-            System.out.println("Nema pobjednika");
+            if (vodoranvoX - 1 == 2 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[4]++;
+                if (brojBodovaZaX[4] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
+
+            //horizontalno
+            if (uspravnoX - 1 == 0 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[5]++;
+                if (brojBodovaZaX[5] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
+
+            if (uspravnoX - 1 == 1 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[6]++;
+                if (brojBodovaZaX[6] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
+
+            if (uspravnoX - 1 == 2 && nizPolje[uspravnoX - 1][vodoranvoX - 1] == 'X') {
+                brojBodovaZaX[7]++;
+                if (brojBodovaZaX[7] == 3) {
+                    rezultatPartije[0]++;
+                }
+            }
+
+            if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
+                System.out.println("'X' je pobjedio.");
+                break;
+            }
+
+            System.out.println("XO polje");
+            for (char[] i : nizPolje) {
+                for (char o : i) {
+                    System.out.print(o + " ");
+                }
+                System.out.print("\n");
+            }
+
+            System.out.println("Neka drugi igrač unese 'O'.");
+
+            int uspravnoO = unos.nextInt();
+            int vodoranvoO = unos.nextInt();
+            while (uspravnoO > 3 || vodoranvoO > 3 || nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X' || nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                System.out.println("Potez nije validan, unesi ponovo: ");
+                uspravnoO = unos.nextInt();
+                vodoranvoO = unos.nextInt();
+            }
+
+            nizPolje[uspravnoO - 1][vodoranvoO - 1] = 'O';
+
+            // dijagonala
+            if (uspravnoO == vodoranvoO && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[0]++;
+                if (brojBodovaZaX[0] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+            // obrnuta dijagonala
+            if (nizPolje.length - 1 - (uspravnoO - 1) == vodoranvoO - 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[1]++;
+                if (brojBodovaZaX[2] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+            // vertikalno
+            if (vodoranvoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[2]++;
+                if (brojBodovaZaX[2] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            if (vodoranvoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[3]++;
+                if (brojBodovaZaX[3] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            if (vodoranvoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[4]++;
+                if (brojBodovaZaX[4] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            //horizontalno
+            if (uspravnoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[5]++;
+                if (brojBodovaZaX[5] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            if (uspravnoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[6]++;
+                if (brojBodovaZaX[6] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            if (uspravnoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
+                brojBodovaZaX[7]++;
+                if (brojBodovaZaX[7] == 3) {
+                    rezultatPartije[1]++;
+                }
+            }
+
+            for (char[] i : nizPolje) {
+                for (char o : i) {
+                    System.out.print(o + " ");
+                }
+                System.out.print("\n");
+            }
+
+            if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
+                System.out.println("'O' je pobjedio.");
+                break;
+            }
+            brojPraznihPolja--;
+            if (brojPraznihPolja == 0 && rezultatPartije[1] == 0 && rezultatPartije[0] == 0) {
+                System.out.println("Nema pobjednika");
+                break;
+            }
         }
     }
 }
