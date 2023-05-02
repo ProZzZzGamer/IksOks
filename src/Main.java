@@ -200,5 +200,11 @@ public class Main {
                 break;
             }
         }
+        for (char[] i : nizPolje) {
+            for (char o : i) {
+                System.out.print(o + " ");
+            }
+            System.out.print("\n");
+        }
     }
 }
