@@ -7,6 +7,7 @@ public class Main {
         char[][] nizPolje = new char[3][3];
 
         int brojPraznihPolja = 9;
+        int brojUnosa = 9;
         for (int i = 0; i < 3; i++) {
             for (int o = 0; o < 3; o++) {
                 nizPolje[i][o] = '_';
@@ -24,7 +25,7 @@ public class Main {
         int[] brojBodovaZaX = new int[8];
         int[] rezultatPartije = new int[3];
 
-        while (brojPraznihPolja > 0) {
+        while (brojUnosa > 0) {
 
             System.out.println("Neka prvi igrač unese 'X'.");
             while (!unos.hasNextInt()) {
@@ -40,6 +41,9 @@ public class Main {
                 uspravnoX = unos.nextInt();
                 vodoranvoX = unos.nextInt();
             }
+
+            brojPraznihPolja--;
+
             nizPolje[uspravnoX - 1][vodoranvoX - 1] = 'X';
 
             // dijagonala
@@ -104,8 +108,11 @@ public class Main {
                 System.out.println("'X' je pobjedio.");
                 break;
             }
+            if (brojPraznihPolja == 0) {
+                System.out.println("Nema pobjednika");
+                break;
+            }
 
-            System.out.println("XO polje");
             for (char[] i : nizPolje) {
                 for (char o : i) {
                     System.out.print(o + " ");
@@ -122,6 +129,8 @@ public class Main {
                 uspravnoO = unos.nextInt();
                 vodoranvoO = unos.nextInt();
             }
+
+            brojPraznihPolja--;
 
             nizPolje[uspravnoO - 1][vodoranvoO - 1] = 'O';
 
@@ -194,11 +203,7 @@ public class Main {
                 System.out.println("'O' je pobjedio.");
                 break;
             }
-            brojPraznihPolja--;
-            if (brojPraznihPolja == 0 && rezultatPartije[1] == 0 && rezultatPartije[0] == 0) {
-                System.out.println("Nema pobjednika");
-                break;
-            }
+            brojUnosa--;
         }
         for (char[] i : nizPolje) {
             for (char o : i) {
