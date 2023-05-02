@@ -22,9 +22,7 @@ public class Main {
         }
 
         int[] brojBodovaZaX = new int[8];
-        int[] brojBodovaZaO = new int[8];
         int[] rezultatPartije = new int[3];
-        int[] brojacXIO = new int[2];
 
         while (brojPraznihPolja > 0) {
 
