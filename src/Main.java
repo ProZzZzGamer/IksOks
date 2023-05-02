@@ -23,6 +23,7 @@ public class Main {
         }
 
         int[] brojBodovaZaX = new int[8];
+        int[] brojBodovaZaO = new int[8];
         int[] rezultatPartije = new int[3];
 
         while (brojUnosa > 0) {
@@ -107,8 +108,7 @@ public class Main {
             if (rezultatPartije[0] == 1 && rezultatPartije[1] == 0) {
                 System.out.println("'X' je pobjedio.");
                 break;
-            }
-            if (brojPraznihPolja == 0) {
+            } else if (brojPraznihPolja == 0) {
                 System.out.println("Nema pobjednika");
                 break;
             }
@@ -135,59 +135,59 @@ public class Main {
             nizPolje[uspravnoO - 1][vodoranvoO - 1] = 'O';
 
             // dijagonala
-            if (uspravnoO == vodoranvoO && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[0]++;
-                if (brojBodovaZaX[0] == 3) {
+            if (uspravnoO == vodoranvoO && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[0]++;
+                if (brojBodovaZaO[0] == 3) {
                     rezultatPartije[1]++;
                 }
             }
             // obrnuta dijagonala
-            if (nizPolje.length - 1 - (uspravnoO - 1) == vodoranvoO - 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[1]++;
-                if (brojBodovaZaX[2] == 3) {
+            if (nizPolje.length - 1 - (uspravnoO - 1) == vodoranvoO - 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[1]++;
+                if (brojBodovaZaO[2] == 3) {
                     rezultatPartije[1]++;
                 }
             }
             // vertikalno
-            if (vodoranvoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[2]++;
-                if (brojBodovaZaX[2] == 3) {
+            if (vodoranvoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[2]++;
+                if (brojBodovaZaO[2] == 3) {
                     rezultatPartije[1]++;
                 }
             }
 
-            if (vodoranvoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[3]++;
-                if (brojBodovaZaX[3] == 3) {
+            if (vodoranvoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[3]++;
+                if (brojBodovaZaO[3] == 3) {
                     rezultatPartije[1]++;
                 }
             }
 
-            if (vodoranvoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[4]++;
-                if (brojBodovaZaX[4] == 3) {
+            if (vodoranvoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[4]++;
+                if (brojBodovaZaO[4] == 3) {
                     rezultatPartije[1]++;
                 }
             }
 
             //horizontalno
-            if (uspravnoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[5]++;
-                if (brojBodovaZaX[5] == 3) {
+            if (uspravnoO - 1 == 0 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[5]++;
+                if (brojBodovaZaO[5] == 3) {
                     rezultatPartije[1]++;
                 }
             }
 
-            if (uspravnoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[6]++;
-                if (brojBodovaZaX[6] == 3) {
+            if (uspravnoO - 1 == 1 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[6]++;
+                if (brojBodovaZaO[6] == 3) {
                     rezultatPartije[1]++;
                 }
             }
 
-            if (uspravnoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'X') {
-                brojBodovaZaX[7]++;
-                if (brojBodovaZaX[7] == 3) {
+            if (uspravnoO - 1 == 2 && nizPolje[uspravnoO - 1][vodoranvoO - 1] == 'O') {
+                brojBodovaZaO[7]++;
+                if (brojBodovaZaO[7] == 3) {
                     rezultatPartije[1]++;
                 }
             }
@@ -201,6 +201,9 @@ public class Main {
 
             if (rezultatPartije[1] == 1 && rezultatPartije[0] == 0) {
                 System.out.println("'O' je pobjedio.");
+                break;
+            } else if (brojPraznihPolja == 0) {
+                System.out.println("Nema pobjednika");
                 break;
             }
             brojUnosa--;
